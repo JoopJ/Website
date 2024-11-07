@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Terminal</title>
+    <style>
+        body {
+            background-color: black;
+            color: green;
+            font-family: monospace;
+            margin: 0;
+            padding: 0;
+        }
+        .terminal {
+            padding: 20px;
+            height: 300px;  /* fixed height */
+            overflow: hidden;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .output {
+            display: block;
+            white-space: pre-wrap;
+            margin-bottom: 5px;
+        }
+        .input-line {
+            display: flex;
+        }
+        input {
+            background-color: black;
+            color: green;
+            border: none;
+            outline: none;
+            width: 100%;
+        }
+        .content {
+            margin-top: 320px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div id="output-seciont"></div>
+        <div class="input-line">
+            <span>$</span><input id="command" type="text" autofocus>
+        </div>
+    </div>
+    <div class="content" id="content"></div>
+
+    <script>src='/scripts/cmd.js'</script>
+</body>
+</html>
+
+
