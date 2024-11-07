@@ -69,7 +69,8 @@ function removeLines(numLines) {
         let firstChildText = terminalOutput.firstChild.innerHTML;
         // Get total number of lines in the first Child
         let firstChildLen = firstChildText.split(/\n/).length;
-
+        console.log("Numlines: "+numLines);
+        console.log("Maxlines: "+maxLines);
         // If the number of lines to be deleted is less than the number of lines in the first element
         if(firstChildLen >= (numLines-maxLines)) {
             // Then split the first element around new lines
@@ -78,7 +79,6 @@ function removeLines(numLines) {
             firstChildText = firstChildText.slice(numLines-maxLines, firstChildLen);
             // Add the paragraph spaces back in
             for(let i=0; i<firstChildText.length-1; i++) {
-                console.log("i " + firstChildText[i])
                 firstChildText[i] = firstChildText[i] + "\n";
             }
             // Join into a string and set it as the html
@@ -120,3 +120,10 @@ function loadProfile() {
             <li>Godot</li>
     `;    
 }
+
+
+let terminal = document.getElementById("js-terminal")
+
+terminal.addEventListener('click', () => {
+    commandInput.focus();
+})
