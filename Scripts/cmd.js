@@ -122,6 +122,7 @@ function loadProfile() {
 }
 
 
+// Click anywhere and have it focus on the textbox
 let terminal = document.getElementById("js-terminal")
 
 terminal.addEventListener('click', () => {
