@@ -69,20 +69,23 @@ function removeLines(numLines) {
         let firstChildText = terminalOutput.firstChild.innerHTML;
         // Get total number of lines in the first Child
         let firstChildLen = firstChildText.split(/\n/).length;
-        console.log("Numlines: "+numLines);
-        console.log("Maxlines: "+maxLines);
+
         // If the number of lines to be deleted is less than the number of lines in the first element
         if(firstChildLen >= (numLines-maxLines)) {
+
             // Then split the first element around new lines
             firstChildText = firstChildText.split(/\n/);
+
             // Take the lines required
             firstChildText = firstChildText.slice(numLines-maxLines, firstChildLen);
+
             // Add the paragraph spaces back in
             for(let i=0; i<firstChildText.length-1; i++) {
                 firstChildText[i] = firstChildText[i] + "\n";
             }
             // Join into a string and set it as the html
             terminalOutput.firstChild.innerHTML = firstChildText.join("");
+            
         }
         // Otherwise just remove the child and call the function again to check enough lines have been removed
         else {
