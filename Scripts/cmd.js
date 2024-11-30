@@ -1,7 +1,9 @@
+const terminalContainer = document.getElementById('js-terminal');
+const terminalInput = document.getElementById('js-terminal-input');
 const terminalOutput = document.getElementById('js-terminal-output');
 const contentDiv = document.getElementById('js-content');
 const commandInput = document.getElementById('js-command');
-const maxLines = getComputedStyle(document.body).getPropertyValue('--max-lines');
+let maxLines = maxLinesFunc();
 
 commandInput.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
@@ -10,6 +12,34 @@ commandInput.addEventListener('keypress', function(e) {
         this.value = ''; // clear input
     }
 });
+
+// On orientation change work out maxLines again (since height will have changed)
+window.addEventListener("orientationchange", () => {
+    // Needs timeout to work properly
+    setTimeout(() => {
+        maxLines = maxLinesFunc()
+    })
+});
+
+// Function to work out maximum lines based on screen height and width
+function maxLinesFunc() {
+    const terminalHeight = terminalContainer.offsetHeight;
+    const terminalInputHeight = terminalInput.offsetHeight;
+    const paddingHeight = getComputedStyle(terminalContainer).getPropertyValue("padding").replace("px", "");
+    const useableHeight = terminalHeight - terminalInputHeight - paddingHeight;
+    let wrapModifier;
+
+    // Wrap modifier is a temp fix for dealing with maxLines and wrapping on mobile. Ruins lines getting deleted nicely and required hardcoded cutoffs.
+    if(window.screen.width < 500) {
+        wrapModifier = 2;
+    } else if(window.screen.width < 329) {
+        wrapModifier = 3
+    }
+
+    let totalLines = Math.floor((useableHeight/19.5)/wrapModifier)
+
+    return totalLines;
+}
 
 function handleCommand(command) {
 
@@ -27,8 +57,8 @@ function handleCommand(command) {
             addOutput("Loading portfolio...");
             contentDiv.innerHTML = "<h2>My Portfolio</h2><p>Details about my portfolio here...</p>";
             break;
-        case 'personal projects':
-            addOutput("Loading personal projects...");
+        case 'projects':
+            addOutput("Loading projects...");
             contentDiv.innerHTML = "<h2>Personal Projects</h2><p>Details about my projects here...</p>";
             break;
         case 'photos':
@@ -67,6 +97,7 @@ function countLines() {
 function removeLines(numLines) {
     if(numLines > maxLines) {
         let firstChildText = terminalOutput.firstChild.innerHTML;
+
         // Get total number of lines in the first Child
         let firstChildLen = firstChildText.split(/\n/).length;
 
@@ -99,28 +130,28 @@ function removeLines(numLines) {
 function loadProfile() {
     contentDiv.innerHTML = `
         <h2>My Profile</h2>
-        <p>Name: Joshua Oppenheimer</p>
-        <p>Contact: <a href="mailto:jppnhmr@gmail.com">jppnhmr@gmail.com</a></p> 
-        <p>Description: Software Engineer</p>
+        <p>Name: </p>
+        <p>Contact: </p> 
+        <p>Description: </p>
 
         <h3>Skills</h3>
         <h4>Programming Languages</h4>£@£
         <ul>
-            <li>Python</li>
-            <li>C++</li>
-            <li>C#</li>
-            <li>HTML</li>
+            <li>...</li>
+            <li>...</li>
+            <li>...</li>
+            <li>...</li>
         </ul>
         <h4>Frameworks</h4>
         <ul>
-            <li>Flask</li>
+            <li>...</li>
         </ul>
         <h4>Tools</h4>
         <ul>
-            <li>Git</li>
-            <li>VS Code</li>
-            <li>Unity</li>
-            <li>Godot</li>
+            <li>...</li>
+            <li>...</li>
+            <li>...</li>
+            <li>...</li>
     `;    
 }
 
