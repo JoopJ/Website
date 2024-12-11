@@ -1,0 +1,69 @@
+/* Start CSS Reset */
+/*#region*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/*#endregion*/
+/* End CSS Reset */
+
+
+/* Start Default Styling */
+/*#region*/
+body {
+    background-color: black;
+    color: green;
+    font-family: monospace;
+    height: 100vh;
+}
+/*#endregion*/
+/* End Default Styling */
+
+/* Start Variables */
+/*#region*/
+:root {
+    --max-lines: 10;
+}
+/*#endregion*/
+/* End Variables
+
+
+/* Start Terminal Styling */
+/*#region*/
+.terminal {
+    margin: 2rem;
+    padding: 2rem;
+    height: 30%;  /* fixed height */
+    overflow: hidden;
+}
+
+.terminal-input {
+    display: flex;
+}
+
+.terminal-input-line {
+    background-color: black;
+    color: green;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.terminal-output {
+    display: block;
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+/*#endregion*/
+/* End Terminal Styling */
+
+
+/* Start Output Styling */
+/*#region*/
+.content {
+    margin: 2rem;
+    padding: 2rem;
+}
+/*#endregion*/
+/* End Output Styling */
