@@ -53,7 +53,7 @@ body {
 .terminal-output {
     display: block;
     white-space: pre-wrap;
-    line-height: 1.5;
+    margin-bottom: 5px;
 }
 /*#endregion*/
 /* End Terminal Styling */
