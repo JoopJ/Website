@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Photos{% endblock %}
+
+{% block content %}
+<div class="photos-container">
+    <h1>Photo Galleries</h1>
+    
+    <div style="background: #f0f0f0; padding: 10px; margin: 10px 0;">
+        <p>Number of galleries found: {{ galleries|length }}</p>
+    </div>
+
+    <div class="gallery-grid">
+        {% for gallery in galleries %}
+        <a href="{{ url_for('photo_gallery', gallery_name=gallery.name) }}" class="gallery-card">
+            {% if gallery.thumbnail %}
+            <div class="gallery-thumbnail">
+                <img src="{{ url_for('static', filename=gallery.path + '/' + gallery.thumbnail) }}"
+                    alt="Thumbnail for {{ gallery.name }}"
+                    loading="lazy">
+            </div>
+            {% else %}
+            <div style="padding: 10px;">No thumbnail found for this gallery</div>
+            {% endif %}
+            <div class="gallery-info">
+                <h2>{{ gallery.name }}</h2>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
