@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}{{ gallery.name }}{% endblock %}
+
+{% block content %}
+<div class="gallery-container">
+    <h1>{{ gallery.name }}</h1>
+    
+    <div class="photo-grid">
+        {% for photo in photos %}
+        <div class="photo-item">
+            <img src="{{ url_for('static', filename=gallery.path + '/' + photo) }}" 
+                 alt="{{ photo }}"
+                 loading="lazy"
+                 onclick="openLightbox(this.src, this.alt)"
+                 class="gallery-image">
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Lightbox container that will show the full-size image -->
+<div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="close-button" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" class="lightbox-content" src="" alt="">
+    <div id="lightbox-caption" class="lightbox-caption"></div>
+</div>
+
+<script>
+    function openLightbox(imageSrc, imageAlt) {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const caption = document.getElementById('lightbox-caption');
+
+        lightboxImg.src = imageSrc;
+        lightboxImg.alt = imageAlt;
+        caption.textContent = imageAlt;
+        lightbox.style.display = 'flex';
+
+        // disable scrolling while lightbox is open
+        document.body.style.overflow = 'hidden';
+        // stop click event from reaching lightbox background
+        event.stopPropagation();
+    }
+
+    function closeLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.style.display = 'none';
+
+        // re-enable scrolling
+        document.body.style.overflow = 'auto';
+    }
+
+    // close lightbox with Escape key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeLightbox();
+        }
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="home-container">
+    <section class="profile-section">
+        <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Profile Picture" class="profile-image">
+        <div class="about-me">
+            <div class="title-container">
+                <h1>Josh Oppenheimer</h1>
+                <h2 class="subtitle">Software Engineer /  Game Developer</h2>
+            </div>
+            <p class="bio">
+                Working on graphics software, and video games.
+            </p>
+        </div>
+    </section>
+
+    <section class="featured-content">
+        <div class="current-project">
+            <h2>Current Project</h2>
+            <a href="{{ url_for('project_detail', project_id='current') }}" class="feature-card">
+                <img src="{{ url_for('static', filename='images/current-project.jpg') }}" alt="Current Project">
+                <h3>Image handler</h3>
+                <p>Application to display image files of various formats, along with details about the file.</p>
+            </a>
+        </div>
+
+        <div class="featured-project">
+            <h2>Featured Project</h2>
+            <a href="{{ url_for('project_detail', project_id='featured') }}" class="feature-card">
+                <img src="{{ url_for('static', filename='images/featured-project.jpg') }}" alt="Featured Project">
+                <h3>Lightning Bolt OpenGL</h3>
+                <p>A Lightning bot generation and rendering envrionement. Allows the user to alter the bolt and rendering options.</p>
+            </a>
+        </div>
+    </section>
+</div>
+{% endblock %}
