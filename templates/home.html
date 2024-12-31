@@ -12,7 +12,7 @@
                 <h2 class="subtitle">Software Engineer /  Game Developer</h2>
             </div>
             <p class="bio">
-                Working on graphics software, and video games.
+                Working on graphics software, and video games. Understanding the bridge between bits of infromation and the screen, and all the wonderful things that can be done inbetween.
             </p>
         </div>
     </section>
@@ -20,7 +20,7 @@
     <section class="featured-content">
         <div class="current-project">
             <h2>Current Project</h2>
-            <a href="{{ url_for('project_detail', project_id='current') }}" class="feature-card">
+            <a href="{{ url_for('project_detail', project_name='Image Handler') }}" class="feature-card">
                 <img src="{{ url_for('static', filename='images/current-project.jpg') }}" alt="Current Project">
                 <h3>Image handler</h3>
                 <p>Application to display image files of various formats, along with details about the file.</p>
@@ -29,7 +29,7 @@
 
         <div class="featured-project">
             <h2>Featured Project</h2>
-            <a href="{{ url_for('project_detail', project_id='featured') }}" class="feature-card">
+            <a href="{{ url_for('project_detail', project_name='Lightning OpenGL') }}" class="feature-card">
                 <img src="{{ url_for('static', filename='images/featured-project.jpg') }}" alt="Featured Project">
                 <h3>Lightning Bolt OpenGL</h3>
                 <p>A Lightning bot generation and rendering envrionement. Allows the user to alter the bolt and rendering options.</p>
