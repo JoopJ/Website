@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Minor Projects{% endblock %}
+
+{% block content %}
+<div class="projects-container">
+    <h1>Minor Projects</h1>
+    
+    <div class="project-grid">
+        {% for project in projects %}
+        <a href="{{ url_for('project_detail', project_name=project.name, project_dir='minor_projects') }}" class="project-card">
+            <div class="project-thumbnail">
+                <img src="{{ url_for('static', filename=project.path + '/' + project.thumbnail) }}" 
+                     alt="Thumbnail for {{ project.name }}"
+                     loading="lazy">
+            </div>
+            <div class="project-info">
+                <h2>{{ project.name }}</h2>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

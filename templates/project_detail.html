@@ -1,14 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}{{ project.name }}{% endblock %}
-
 {% block content %}
 <div class="project-detail-container">
-    <header class="project-header">
+    <header class="project-title">
         <h1>{{ project.name }}</h1>
     </header>
     
-    <article class="project-content">
+    <article class="markdown-content">
         {{ project.content | safe }}
     </article>
 </div>

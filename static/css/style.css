@@ -348,3 +348,152 @@ body {
     color: #333;
     text-align: center;
 }
+
+/* Individual project page styles */
+/*#region*/
+/* Overall container styling */
+.project-title {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+.markdown-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    line-height: 1.6;
+    color: #000000;
+}
+
+/* Headings */
+.markdown-content h1 {
+    font-size: 2.2em;
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+    color: #2c3e50;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 0.3em;
+}
+
+.markdown-content h2 {
+    font-size: 1.8em;
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+    color: #2c3e50;
+}
+
+.markdown-content h3 {
+    font-size: 1.4em;
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    color: #2c3e50;
+}
+
+/* Paragraphs and text */
+.markdown-content p {
+    margin-bottom: 1.2em;
+    font-size: 1.1em;
+}
+
+/* Links */
+.markdown-content a {
+    color: #3498db;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+}
+
+.markdown-content a:hover {
+    border-bottom-color: #3498db;
+}
+
+/* Code blocks */
+.markdown-content pre {
+    background-color: #ffffff;
+    border: 1px solid #009933;
+    border-radius: 4px;
+    padding: 1em;
+    margin: 1.2em 0;
+    overflow-x: auto;
+}
+
+.markdown-content code {
+    font-family: 'Source Code Pro', Consolas, Monaco, 'Andale Mono', monospace;
+    font-size: 0.9em;
+    padding: 0.2em 0.4em;
+    background-color: #f8f9fa;
+    border-radius: 3px;
+}
+
+/* Inline code */
+.markdown-content p code {
+    background-color: #f8f9fa;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+/* Lists */
+.markdown-content ul, 
+.markdown-content ol {
+    padding-left: 1.8em;
+    margin-bottom: 1.2em;
+}
+
+.markdown-content li {
+    margin-bottom: 0.5em;
+}
+
+/* Blockquotes */
+.markdown-content blockquote {
+    margin: 1.2em 0;
+    padding: 0.5em 1em;
+    border-left: 4px solid #3498db;
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+/* Tables */
+.markdown-content table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1.2em 0;
+}
+
+.markdown-content th,
+.markdown-content td {
+    padding: 0.8em;
+    border: 1px solid #dee2e6;
+}
+
+.markdown-content th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+/* Images */
+.markdown-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 1.2em 0;
+    border-radius: 4px;
+}
+
+/* Horizontal rule */
+.markdown-content hr {
+    margin: 2em 0;
+    border: 0;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Bold and italic */
+.markdown-content strong {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.markdown-content em {
+    font-style: italic;
+}
+/*#endregion*/

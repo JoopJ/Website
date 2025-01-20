@@ -5,21 +5,22 @@ import markdown
 
 app = Flask(__name__)
 
-def get_projects():
+def get_projects(projects_dir):
     """
     Each project should have a project.md file and thumbnail image.
     """
-    projects_dir = os.path.join(app.static_folder, 'projects')
+    projects_dir_os = os.path.join(app.static_folder, projects_dir)
     projects = []
 
-    if os.path.exists(projects_dir):
-        for project_name in os.listdir(projects_dir):
-            project_path = os.path.join(projects_dir, project_name)
+    if os.path.exists(projects_dir_os):
+        for project_name in os.listdir(projects_dir_os):
+            project_path = os.path.join(projects_dir_os, project_name)
 
             if os.path.isdir(project_path):
                 md_path = os.path.join(project_path, 'project.md')
                 thumbnail = None
 
+                # Look for thumbnail image
                 for img_name in ['thumbnail.jpg', 'thumbnail.png', 'thumbnail.jpeg']:
                     img_path = os.path.join(project_path, img_name)
                     if os.path.exists(img_path):
@@ -30,11 +31,9 @@ def get_projects():
 
                     mod_time = os.path.getmtime(md_path)
 
-                    print("project " + project_name + " found.")
-
                     projects.append({
                         'name': project_name,
-                        'path': f'projects/{project_name}',
+                        'path': f'{projects_dir}/{project_name}',
                         'thumbnail': thumbnail,
                         'mod_time': mod_time
                     })
@@ -49,9 +48,6 @@ def get_photo_galleries():
 
     photos_dir = os.path.join(app.static_folder, 'photos')
     galleries = []
-
-    print("Looking for photos in:", photos_dir)
-    print("Does the directory exist?", os.path.exists(photos_dir))
 
     if os.path.exists(photos_dir):
         for gallery_name in os.listdir(photos_dir):
@@ -88,26 +84,37 @@ def photo_gallery(gallery_name):
 
     return render_template('photo_gallery.html', gallery=gallery, photos=photos)
 
-
 @app.route('/')
 def home():
     return render_template('home.html')
 
-@app.route('/projects')
-def projects():
-    projects = get_projects()
-    return render_template('projects.html', projects=projects)
+@app.route('/main_projects')
+def main_projects():
+    projects = get_projects('main_projects')
+    return render_template('main_projects.html', projects=projects)
 
-@app.route('/project_detail/<project_name>')
-def project_detail(project_name):
-    project_path = os.path.join(app.static_folder, f'projects/{project_name}')
+@app.route('/minor_projects')
+def minor_projects():
+    projects = get_projects('minor_projects')
+    return render_template('minor_projects.html', projects=projects)
+
+@app.route('/project_detail/<project_dir>/<project_name>')
+def project_detail(project_name, project_dir):
+    project_path = os.path.join(app.static_folder, f'{project_dir}\{project_name}')
     md_path = os.path.join(project_path, 'project.md')
 
+    print("Path: " + md_path)
     if os.path.exists(md_path):
         with open(md_path, 'r', encoding='utf-8') as md_file:
             md_content = md_file.read()
 
-        html_content = markdown.markdown(md_content)
+        html_content = markdown.markdown(
+            md_content,
+            extensions=[
+                'fenced_code',  # Allows code blocks to be defined with ```
+                'nl2br',        # Converts newlines to <br> tags
+            ]
+        )
 
         project = { 'name': project_name, 'content': html_content}
 
@@ -122,4 +129,5 @@ def game_detail(game_id):
     return render_template('game_detail.html', game_id=game_id)
 
 if __name__ == '__main__':
+    use_directory_urls=False        # Use directory URLs instead of query parameters
     app.run(host='0.0.0.0', port=5000, debug=True)
