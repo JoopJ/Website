@@ -1,0 +1,14 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "gcr.io/personal-website-452813/personal-website:$SHORT_SHA", "."]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "gcr.io/personal-website-452813/personal-website:$SHORT_SHA"]
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: gcloud
+    args:
+      - "run"
+      - "deploy"
+      - "personal-website-service"
+      - "--image=gcr.io/personal-website-452813/personal-website:$SHORT_SHA"
+      - "--region=europe-west2"
+      - "--platform=managed"
