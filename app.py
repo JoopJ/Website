@@ -101,10 +101,11 @@ def minor_projects():
 
 @app.route('/project_detail/<project_dir>/<project_name>')
 def project_detail(project_name, project_dir):
-    project_path = os.path.join(app.static_folder, f'{project_dir}\{project_name}')
+    project_path = os.path.join(app.static_folder, f'{project_dir}/{project_name}')
     md_path = os.path.join(project_path, 'project.md')
 
     #print("Path: " + md_path)
+    project = { 'name': project_name, 'content': 'Project not found'}
     if os.path.exists(md_path):
         with open(md_path, 'r', encoding='utf-8') as md_file:
             md_content = md_file.read()
@@ -120,7 +121,6 @@ def project_detail(project_name, project_dir):
         project = { 'name': project_name, 'content': html_content}
     else:
         logging.error(f"Project not found at {project_path}")
-        project = { 'name': project_name, 'content': 'Project not found'}
 
     return render_template('project_detail.html', project=project)
 
