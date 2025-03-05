@@ -1,3 +1,3 @@
-# Lightning OpenGL
+[This project](https://github.com/JoopJ/LightningOpenGL) was my final year dissertation at Newcastle University. It required extensive knowledge of the graphics pipeline which I built using OpenGL and GLFW.
 
-This project sought to understand how lightning can be rendered in OpenGL, using standard rendering techniques, then introducing different botl generation methods to understand how they affect performance.
+<img src="/static/main_projects/Lightning OpenGL/poster.jpg" alr="drawing" style="width:1200px;"/>
