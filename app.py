@@ -117,6 +117,9 @@ def project_detail(project_name, project_dir):
         )
 
         project = { 'name': project_name, 'content': html_content}
+    else:
+        print(f"Project not found at {project_path}")
+        project = { 'name': project_name, 'content': 'Project not found'}
 
     return render_template('project_detail.html', project=project)
 
