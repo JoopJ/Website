@@ -2,6 +2,7 @@
 from flask import Flask, render_template
 import os
 import markdown
+import logging
 
 app = Flask(__name__)
 
@@ -103,7 +104,7 @@ def project_detail(project_name, project_dir):
     project_path = os.path.join(app.static_folder, f'{project_dir}\{project_name}')
     md_path = os.path.join(project_path, 'project.md')
 
-    print("Path: " + md_path)
+    #print("Path: " + md_path)
     if os.path.exists(md_path):
         with open(md_path, 'r', encoding='utf-8') as md_file:
             md_content = md_file.read()
@@ -118,7 +119,7 @@ def project_detail(project_name, project_dir):
 
         project = { 'name': project_name, 'content': html_content}
     else:
-        print(f"Project not found at {project_path}")
+        logging.error(f"Project not found at {project_path}")
         project = { 'name': project_name, 'content': 'Project not found'}
 
     return render_template('project_detail.html', project=project)
@@ -133,4 +134,5 @@ def game_detail(game_id):
 
 if __name__ == '__main__':
     use_directory_urls=False        # Use directory URLs instead of query parameters
+    logging.basicConfig(level=logging.DEBUG)
     app.run(host='0.0.0.0', port=5000, debug=True)
