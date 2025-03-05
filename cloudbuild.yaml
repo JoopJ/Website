@@ -1,3 +1,5 @@
+options:
+  defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
 steps:
   - name: "gcr.io/cloud-builders/docker"
     args: ["build", "-t", "gcr.io/personal-website-452813/personal-website:$SHORT_SHA", "."]
