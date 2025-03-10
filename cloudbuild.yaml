@@ -2,15 +2,15 @@ options:
   defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
 steps:
   - name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "gcr.io/personal-website-452813/personal-website:$SHORT_SHA", "."]
+    args: ["build", "-t", "gcr.io/axial-analyzer-452717-i3/Website:$SHORT_SHA", "."]
   - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "gcr.io/personal-website-452813/personal-website:$SHORT_SHA"]
+    args: ["push", "gcr.io/axial-analyzer-452717-i3/Website:$SHORT_SHA"]
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
     entrypoint: gcloud
     args:
       - "run"
       - "deploy"
       - "personal-website-service"
-      - "--image=gcr.io/personal-website-452813/personal-website:$SHORT_SHA"
+      - "--image=gcr.io/axial-analyzer-452717-i3/Website:$SHORT_SHA"
       - "--region=europe-west2"
       - "--platform=managed"
